@@ -267,7 +267,7 @@ def update_layers_trained_weights(last_layer, final_weights):
         # Go to the previous layer.
         layer = layer.previous_layer
 
-def predict(last_layer, data_inputs):
+def predict(last_layer, data_inputs,data_outputs):
     """
     Uses the trained weights for predicting the samples' outputs.
 
@@ -283,7 +283,7 @@ def predict(last_layer, data_inputs):
     if len(weights) != len(activations):
         raise TypeError("The length of layers {num_layers} is not equal to the number of activations functions {num_activations} and they must be equal.".format(num_layers=len(weights), num_activations=len(activations)))
 
-    predictions = numpy.zeros(shape=(data_inputs.shape[0]))
+    predictions = numpy.zeros(shape=(data_inputs.shape[0],data_outputs[1]))
     for sample_idx in range(data_inputs.shape[0]):
         r1 = data_inputs[sample_idx, :]
         for curr_weights, activation in zip(weights, activations):
